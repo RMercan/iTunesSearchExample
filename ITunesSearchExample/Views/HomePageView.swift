@@ -25,7 +25,6 @@ final class HomepageView: UIView {
     
     lazy var navigationBarItems: NavigationBarItems = {
         let items = NavigationBarItems()
-        //items.backgroundColor = .red
         return items
     }()
     
@@ -36,23 +35,6 @@ final class HomepageView: UIView {
         label.numberOfLines = 0
         return label
     }()
-    
-//    lazy var bottomSheetView: BottomSheetView = {
-//        let view = BottomSheetView()
-//        view.backgroundColor = .red
-////        view.isHidden = true
-//        return view
-//    }()
-    
-//    lazy var containerStackView: UIStackView = {
-//        let spacer = UIView()
-//        let stackView = UIStackView(arrangedSubviews: [bottomSheetView])
-//        stackView.axis = .vertical
-//        stackView.spacing = 16.0
-////        stackView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
-//        stackView.isHidden = true
-//        return stackView
-//    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -72,17 +54,12 @@ final class HomepageView: UIView {
         
         addSubview(navigationBarItems)
         addSubview(beginningLabel)
-//        addSubview(bottomSheetView)
-//        
-//        addSubview(containerStackView)
-//        containerStackView.translatesAutoresizingMaskIntoConstraints = false
         
     }
     
     func setupLayouts(){
         navigationBarItems.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview().inset(5)
-//            make.height.equalTo(110)  --> bunu yapınca tüm görüntü gitti
         }
 
         collectionView.snp.makeConstraints{ make in
@@ -96,13 +73,6 @@ final class HomepageView: UIView {
             make.leading.trailing.equalToSuperview().inset(20)
         }
         
-        
-//        containerStackView.snp.makeConstraints { make in
-//            make.top.equalToSuperview().inset(self.safeAreaTop + 10)
-//            make.bottom.equalToSuperview().inset(self.safeAreaBottom)
-//            make.leading.equalToSuperview().inset(10)
-//            make.trailing.equalToSuperview().inset(10)
-//        }
     }
     
 }

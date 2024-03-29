@@ -14,8 +14,8 @@
             filePath = "ITunesSearchExample/HomePageViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
             <Locations>
@@ -62,8 +62,8 @@
             filePath = "ITunesSearchExample/HomePageViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
             <Locations>
@@ -110,8 +110,8 @@
             filePath = "ITunesSearchExample/HomePageViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "whenSelectCategory()"
             landmarkType = "7">
             <Locations>
@@ -160,53 +160,20 @@
                   endingLineNumber = "197"
                   offsetFromSymbolStart = "460">
                </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "02A4C02D-A40A-450B-9BC6-FD063AFD0B90"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ITunesSearchExample/HomePageViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
-            landmarkName = "HomepageViewController"
-            landmarkType = "3">
-            <Locations>
                <Location
-                  uuid = "02A4C02D-A40A-450B-9BC6-FD063AFD0B90 - 384ca9dcda4635c1"
+                  uuid = "BA82DF87-D4FB-4428-A9AB-2E7A03AD73DA - b8feac8c3ce293bc"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "ITunesSearchExample.HomepageViewController.audioEvent(for: ITunesSearchExample.Media, at: Foundation.IndexPath, in: ITunesSearchExample.iTunesCollectionViewCell) -&gt; ()"
+                  symbolName = "closure #1 (ITunesSearchExample.MediasService.MediasResult) -&gt; () in ITunesSearchExample.HomepageViewController.whenSelectCategory() -&gt; ()"
                   moduleName = "ITunesSearchExample"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/rabiamercan/Documents/workspace/ITunesSearchExample/ITunesSearchExample/HomePageViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "235"
-                  endingLineNumber = "235"
-                  offsetFromSymbolStart = "388">
-               </Location>
-               <Location
-                  uuid = "02A4C02D-A40A-450B-9BC6-FD063AFD0B90 - 384ca9dcda4635c1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ITunesSearchExample.HomepageViewController.audioEvent(for: ITunesSearchExample.Media, at: Foundation.IndexPath, in: ITunesSearchExample.iTunesCollectionViewCell) -&gt; ()"
-                  moduleName = "ITunesSearchExample"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rabiamercan/Documents/workspace/ITunesSearchExample/ITunesSearchExample/HomePageViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "235"
-                  endingLineNumber = "235"
-                  offsetFromSymbolStart = "448">
+                  startingLineNumber = "192"
+                  endingLineNumber = "192"
+                  offsetFromSymbolStart = "460">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -221,26 +188,10 @@
             filePath = "ITunesSearchExample/AudioPlayerService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "playMedia(at:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4D017FD9-7750-4E59-908C-9C46782B8A79"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ITunesSearchExample/HomePageViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
-            landmarkName = "HomepageViewController"
-            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -253,10 +204,42 @@
             filePath = "ITunesSearchExample/AudioPlayerService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "playAudio(for:at:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7C1F9406-3DBE-40AB-A7F8-782379054455 - 3e4b1fee0e073240"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in ITunesSearchExample.AudioPlayerService.playAudio(for: ITunesSearchExample.Media, at: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "ITunesSearchExample"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rabiamercan/Documents/workspace/ITunesSearchExample/ITunesSearchExample/AudioPlayerService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "584">
+               </Location>
+               <Location
+                  uuid = "7C1F9406-3DBE-40AB-A7F8-782379054455 - 3e4b1fee0e073240"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in ITunesSearchExample.AudioPlayerService.playAudio(for: ITunesSearchExample.Media, at: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "ITunesSearchExample"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rabiamercan/Documents/workspace/ITunesSearchExample/ITunesSearchExample/AudioPlayerService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "640">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -269,10 +252,42 @@
             filePath = "ITunesSearchExample/AudioPlayerService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "playMedia(at:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5BA2F895-26CF-4403-9A13-7BAE81E925F9 - 41c22b497bde3f88"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ITunesSearchExample.AudioPlayerService.playMedia(at: Swift.Int) -&gt; ()"
+                  moduleName = "ITunesSearchExample"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rabiamercan/Documents/workspace/ITunesSearchExample/ITunesSearchExample/AudioPlayerService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "117"
+                  endingLineNumber = "117"
+                  offsetFromSymbolStart = "464">
+               </Location>
+               <Location
+                  uuid = "5BA2F895-26CF-4403-9A13-7BAE81E925F9 - 41c22b497bde3fc6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ITunesSearchExample.AudioPlayerService.playMedia(at: Swift.Int) -&gt; ()"
+                  moduleName = "ITunesSearchExample"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rabiamercan/Documents/workspace/ITunesSearchExample/ITunesSearchExample/AudioPlayerService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "119"
+                  endingLineNumber = "119"
+                  offsetFromSymbolStart = "464">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -289,6 +304,38 @@
             endingLineNumber = "130"
             landmarkName = "playNext()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C699713E-27D6-4CAE-BBCB-F7D0E57B7DD1 - d6560d6838c36481"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ITunesSearchExample.AudioPlayerService.playNext() -&gt; ()"
+                  moduleName = "ITunesSearchExample"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rabiamercan/Documents/workspace/ITunesSearchExample/ITunesSearchExample/AudioPlayerService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "130"
+                  endingLineNumber = "130"
+                  offsetFromSymbolStart = "932">
+               </Location>
+               <Location
+                  uuid = "C699713E-27D6-4CAE-BBCB-F7D0E57B7DD1 - d6560d6838c36547"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ITunesSearchExample.AudioPlayerService.playNext() -&gt; ()"
+                  moduleName = "ITunesSearchExample"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rabiamercan/Documents/workspace/ITunesSearchExample/ITunesSearchExample/AudioPlayerService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "932">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -301,41 +348,9 @@
             filePath = "ITunesSearchExample/HomePageViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
             landmarkName = "updateCellsPlayerButtonsAppearance()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "605EB914-32CC-4094-BD96-E3631280B7EE"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ITunesSearchExample/BottomSheetManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
-            landmarkName = "setPlayButtonsActive()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "656744E1-3FFD-4D06-8CB2-FFA5370A9333"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ITunesSearchExample/BottomSheetManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
-            landmarkName = "setPlayButtonsActive()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -349,8 +364,8 @@
             filePath = "ITunesSearchExample/HomePageViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
             landmarkName = "audioEvent(for:at:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -365,42 +380,10 @@
             filePath = "ITunesSearchExample/HomePageViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368"
-            landmarkName = "didTapPlayButton(_:)"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
+            landmarkName = "didTapPlayButtonForCells(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "98C52CCD-5AFA-4210-91B4-36FF6B325165 - bad3f1d14907272"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ITunesSearchExample.HomepageViewController.didTapPlayButton(__C.UIButton) -&gt; ()"
-                  moduleName = "ITunesSearchExample"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rabiamercan/Documents/workspace/ITunesSearchExample/ITunesSearchExample/HomePageViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "368"
-                  endingLineNumber = "368"
-                  offsetFromSymbolStart = "1348">
-               </Location>
-               <Location
-                  uuid = "98C52CCD-5AFA-4210-91B4-36FF6B325165 - bad3f1d14907272"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ITunesSearchExample.HomepageViewController.didTapPlayButton(__C.UIButton) -&gt; ()"
-                  moduleName = "ITunesSearchExample"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rabiamercan/Documents/workspace/ITunesSearchExample/ITunesSearchExample/HomePageViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "368"
-                  endingLineNumber = "368"
-                  offsetFromSymbolStart = "1012">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -413,8 +396,8 @@
             filePath = "ITunesSearchExample/HomePageViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
             landmarkName = "audioEvent(for:at:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -429,9 +412,105 @@
             filePath = "ITunesSearchExample/HomePageViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
             landmarkName = "audioEvent(for:at:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "88A35E7B-A6E0-4C8A-AE2B-1B0188EEFE82"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ITunesSearchExample/AudioPlayerService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "playAudio(for:at:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "88A35E7B-A6E0-4C8A-AE2B-1B0188EEFE82 - 3e4b1fee0e073261"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in ITunesSearchExample.AudioPlayerService.playAudio(for: ITunesSearchExample.Media, at: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "ITunesSearchExample"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rabiamercan/Documents/workspace/ITunesSearchExample/ITunesSearchExample/AudioPlayerService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "372">
+               </Location>
+               <Location
+                  uuid = "88A35E7B-A6E0-4C8A-AE2B-1B0188EEFE82 - 3e4b1fee0e073261"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in ITunesSearchExample.AudioPlayerService.playAudio(for: ITunesSearchExample.Media, at: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "ITunesSearchExample"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rabiamercan/Documents/workspace/ITunesSearchExample/ITunesSearchExample/AudioPlayerService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "424">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B82D3771-02A4-4808-AA70-4A4459561945"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ITunesSearchExample/BottomSheetManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "setPlayButtonsActive()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4AB25A8A-2EC4-442E-BB15-D9D7ACCA6B9E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ITunesSearchExample/HomePageViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "audioEvent(for:at:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2D50E3F5-7A7C-4754-9A56-E8F434FA4A5C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ITunesSearchExample/BottomSheetManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "setPlayButtonsActive()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -13,7 +13,6 @@ final class MiniPlayerView: UIView {
    
     lazy var miniItemImageView: UIImageView = {
         let imageView = UIImageView()
-//        imageView.backgroundColor = .brown
         imageView.contentMode = .scaleAspectFill // Görüntüyü uygun şekilde ölçeklendir
         imageView.clipsToBounds = true // Görüntünün sınırların dışına çıkmasını önle
         imageView.layer.cornerRadius = 10
@@ -22,7 +21,6 @@ final class MiniPlayerView: UIView {
     
     lazy var miniItemTitleLabel: UILabel = {
         let label = UILabel()
-//        label.backgroundColor = .cyan
         label.textAlignment = .left
         label.numberOfLines = 0
         return label

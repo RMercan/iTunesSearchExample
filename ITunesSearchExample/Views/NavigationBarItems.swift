@@ -24,9 +24,7 @@ class NavigationBarItems: UIView, UISearchBarDelegate {
         searchBar.placeholder = "Search content"
         searchBar.delegate = self
         searchBar.showsScopeBar = true
-//        let buttonImplementation = UISegmentedControl()
-        let scopeButtonTitles = ["audiobook", 
-                                 //"podcast",
+        let scopeButtonTitles = ["audiobook",
                                  "music"]
         searchBar.scopeButtonTitles = scopeButtonTitles
         // Search barın scope barındaki varsayılan seçimi kaldır
@@ -63,7 +61,6 @@ class NavigationBarItems: UIView, UISearchBarDelegate {
             make.top.equalTo(titleLabel.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(10)
             make.bottom.equalToSuperview()
-//            make.height.equalTo(30)
         }
         
     }

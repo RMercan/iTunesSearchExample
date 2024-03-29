@@ -19,14 +19,16 @@ final class AudioPlayerService: NSObject, AVAudioPlayerDelegate {
 
     var audioPlayer: AVAudioPlayer?
     var timer: Timer?
+    
+    //FIXME: check this: is there any caller
     var currentPlayingIndexPath: IndexPath?
-//    var isPlaying: Bool = false
-    var currentMedia: Media?
+    var currentPlayingMedia: Media?
     var currentIndex: Int = -1
     var playlist: [Media] = []
+    var totalTime: TimeInterval = 0.0
     
     func playAudio(for media: Media, at indexPath: IndexPath) {
-        // Önceki zamanlayıcıyı durdur
+        // Önceki timerı durdur
         timer?.invalidate()
         
         guard let audioURL = URL(string: media.previewUrl) else {
@@ -40,23 +42,21 @@ final class AudioPlayerService: NSObject, AVAudioPlayerDelegate {
             }
             DispatchQueue.main.async {
                 do {
-                    self.currentMedia = media
+                    self.currentPlayingMedia = media
                     self.playMedia(at: indexPath.row) 
+                    self.currentPlayingIndexPath = indexPath
 
-//                    if !self.playlist.contains(where: { $0.collectionId == media.collectionId }) {
-//                        self.playlist.append(media)
-//                    }
-//                    
-//                    if let index = self.playlist.firstIndex(where: { $0.collectionId == media.collectionId }) {
-//                        self.currentIndex = index
-//                    }
-                    
-                    //                    self.playlist =
                     self.audioPlayer = try AVAudioPlayer(data: data)
                     self.audioPlayer?.delegate = self
                     self.audioPlayer?.play()
+                    
                     // İlerleme durumunu güncellemek için zamanlayıcıyı başlat
                     self.startUpdatingProgress()
+                    
+                    // Medyanın toplam süresi
+                    self.totalTime =  self.audioPlayer?.duration ?? 1
+                    
+                    
                     BottomSheetManager.shared.updateContent(media: media)
                 } catch {
                     print("Error playing audio: \(error.localizedDescription)")
@@ -67,10 +67,10 @@ final class AudioPlayerService: NSObject, AVAudioPlayerDelegate {
     }
     
     func startUpdatingProgress() {
-        // Zaten bir zamanlayıcı varsa, durdur
+        // Zaten bir timer varsa, durdur
         timer?.invalidate()
         
-        // Yeni bir zamanlayıcı oluştur ve başlat
+        // Yeni bir timer oluştur ve başlat
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
             guard let self = self else { return }
             guard let player = self.audioPlayer else { return }
@@ -82,12 +82,13 @@ final class AudioPlayerService: NSObject, AVAudioPlayerDelegate {
     
     
     func stopAudio() {
-        // Zamanlayıcıyı durdur
+        // timerı durdur
         timer?.invalidate()
         
         if let existingPlayer = audioPlayer, existingPlayer.isPlaying {
             existingPlayer.stop()
-            currentMedia = nil
+            currentPlayingMedia = nil
+            currentPlayingIndexPath = nil
         }
         
         delegate?.finishPlaying()
@@ -115,7 +116,6 @@ final class AudioPlayerService: NSObject, AVAudioPlayerDelegate {
         guard index >= 0 && index < playlist.count else { return }
         currentIndex = index
         let media = playlist[currentIndex]
-//        playAudio(for: media, at: IndexPath(item: currentIndex, section: 0))
     }
     
     func playNext() {

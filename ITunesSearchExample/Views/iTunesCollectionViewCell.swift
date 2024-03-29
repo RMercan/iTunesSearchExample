@@ -64,7 +64,6 @@ final class iTunesCollectionViewCell: UICollectionViewCell {
         favoriteButton.widthAnchor.constraint(equalTo: favoriteButton.heightAnchor).isActive = true
         let commonHeightConstraint = playButton.heightAnchor.constraint(equalTo: favoriteButton.heightAnchor)
         commonHeightConstraint.isActive = true
-//        backgroundColor = .blue
         
     }
     
