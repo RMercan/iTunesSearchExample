@@ -104,8 +104,8 @@
 				B6AC8E3C2B9EF8960051F07D /* FavoritesManager.swift */,
 				B6AC8E402B9EFB3A0051F07D /* FavoriteMedia.swift */,
 				B6F016B12BB4041B00C1203F /* BottomSheetManager.swift */,
-				B6F016B72BB6FA5F00C1203F /* Extensions */,
 				B6F0373D2BA466E600799639 /* Views */,
+				B6F016B72BB6FA5F00C1203F /* Extensions */,
 			);
 			path = ITunesSearchExample;
 			sourceTree = "<group>";

@@ -245,12 +245,12 @@ class HomepageViewController: UIViewController, UICollectionViewDataSource, UICo
     func updateCellsPlayerButtonsAppearance() {
         DispatchQueue.main.async {
             guard let currentMedia = self.audioPlayerService.currentPlayingMedia else { return }
-            let currentMediaCollectionId = currentMedia.collectionId
+            let currentMediaPreviewUrl = currentMedia.previewUrl
             
             for cell in self.homepageView.collectionView.visibleCells {
                 guard let cell = cell as? iTunesCollectionViewCell else { continue }
                 
-                if let cellMedia = cell.media, cellMedia.collectionId == currentMediaCollectionId {
+                if let cellMedia = cell.media, cellMedia.previewUrl == currentMediaPreviewUrl {
                     cell.playButton.isSelected = true
                 } else {
                     cell.playButton.isSelected = false
@@ -312,7 +312,6 @@ class HomepageViewController: UIViewController, UICollectionViewDataSource, UICo
         guard let cell = homepageView.collectionView.cellForItem(at: indexPath) as? iTunesCollectionViewCell else { return }
         
         let media = filteredMedia[indexPath.item]
-        //        let media = audioPlayerService.playlist[indexPath.item]
         BottomSheetManager.shared.setPlayButtonsActive()
         cell.playButton.isSelected = true
         
@@ -328,6 +327,7 @@ class HomepageViewController: UIViewController, UICollectionViewDataSource, UICo
         let index = sender.tag
         audioPlayerService.currentIndex = index
         let indexPath = IndexPath(item: index, section: 0)
+
         // currentPlayingMedia değişkeninden medya bilgisini al
         guard let media = audioPlayerService.currentPlayingMedia else { return }
         BottomSheetManager.shared.setPlayButtonsActive()
@@ -374,7 +374,7 @@ class HomepageViewController: UIViewController, UICollectionViewDataSource, UICo
             for (index, media) in self.filteredMedia.enumerated() {
                 let indexPath = IndexPath(row: index, section: 0)
                 guard let cell = self.homepageView.collectionView.cellForItem(at: indexPath) as? iTunesCollectionViewCell else { continue }
-                if self.favoritesManager.favoriteMedia.contains(where: { $0.media.collectionId == media.collectionId }) {
+                if self.favoritesManager.favoriteMedia.contains(where: { $0.media.previewUrl == media.previewUrl }) {
                     // Medya favorilerde, dolu yıldız görünümü
                     cell.favoriteButton.isSelected = true
                 } else {
@@ -399,7 +399,7 @@ class HomepageViewController: UIViewController, UICollectionViewDataSource, UICo
         guard let cell = homepageView.collectionView.cellForItem(at: indexPath) as? iTunesCollectionViewCell else { return }
         let media = filteredMedia[indexPath.row]
         
-        if let favoriteIndex = favoritesManager.favoriteMedia.firstIndex(where: { $0.media.collectionId == media.collectionId }) {
+        if let favoriteIndex = favoritesManager.favoriteMedia.firstIndex(where: { $0.media.previewUrl == media.previewUrl }) {
             // Medya zaten favorilerde, favorilerden çıkar
             favoritesManager.favoriteMedia.remove(at: favoriteIndex)
             saveFavoritesToUserDefaults()
