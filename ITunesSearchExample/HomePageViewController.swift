@@ -16,8 +16,6 @@ class HomepageViewController: UIViewController, UICollectionViewDataSource, UICo
         return view
     }()
     
-    // Kategorilere göre favori durumları saklamak için dictionary
-    var favoriteStatusByCategory: [String: [IndexPath: Bool]] = [:]
     var selectedCategory: String = ""
     var searchBarSearchText: String = ""
     var filteredMedia: [Media] = []
@@ -25,13 +23,9 @@ class HomepageViewController: UIViewController, UICollectionViewDataSource, UICo
     let mediasService = MediasService()
     let favoritesManager = FavoritesManager()
     let audioPlayerService = AudioPlayerService()
-//    let miniPlayerView = MiniPlayerView()
-//    let fullScreenPlayerView = FullScreenPlayerView()
     let bottomSheetView = BottomSheetManager.shared.bottomSheetView
     var selectedIndexForPlay: Int = -1
-    var selectedIndexForFavorite: Int = -1
     var selectedScopeForScopeBar: Int = -1
-//    var currentMedia: Media
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,10 +62,12 @@ class HomepageViewController: UIViewController, UICollectionViewDataSource, UICo
     }
     
     func setupTargets() {
-        bottomSheetView.fullScreenPlayerView.fullScreenPlayButton.addTarget(self, action: #selector(didTapPlayButton), for: .touchUpInside)
-        bottomSheetView.miniPlayerView.miniPlayButton.addTarget(self, action: #selector(didTapPlayButton), for: .touchUpInside)
+        bottomSheetView.fullScreenPlayerView.fullScreenPlayButton.addTarget(self, action: #selector(didTapPlayButtonForMiniAndFullScreenPlayer), for: .touchUpInside)
+        bottomSheetView.miniPlayerView.miniPlayButton.addTarget(self, action: #selector(didTapPlayButtonForMiniAndFullScreenPlayer), for: .touchUpInside)
         bottomSheetView.fullScreenPlayerView.previousButton.addTarget(self, action: #selector(didTapPreviousButton), for: .touchUpInside)
         bottomSheetView.fullScreenPlayerView.nextButton.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
+        // Progress slider değeri değiştiğinde
+        bottomSheetView.fullScreenPlayerView.progressSlider.addTarget(self, action: #selector(progressSliderValueChanged(_:)), for: .valueChanged)
     }
     
 //MARK: CollectionView Functions ------------------
@@ -91,9 +87,7 @@ class HomepageViewController: UIViewController, UICollectionViewDataSource, UICo
         cell.itemTitleLabel.text = media.artistName
         
         cell.playButton.tag = indexPath.row
-        cell.playButton.addTarget(self, action: #selector(didTapPlayButton), for: .touchUpInside)
-//        bottomSheetView.miniPlayerView.miniPlayButton = cell.playButton  //YANLIŞ KULLANIM
-//        bottomSheetView.fullScreenPlayerView.fullScreenPlayButton = cell.playButton    //YANLIŞ KULLANIM
+        cell.playButton.addTarget(self, action: #selector(didTapPlayButtonForCells), for: .touchUpInside)
         
         cell.favoriteButton.tag = indexPath.item
         cell.favoriteButton.addTarget(self, action: #selector(didTapFavoriteButton), for: .touchUpInside)
@@ -109,14 +103,13 @@ class HomepageViewController: UIViewController, UICollectionViewDataSource, UICo
         guard let cell = cell as? iTunesCollectionViewCell else { return }
         cell.playButton.isSelected = indexPath.row == selectedIndexForPlay ? true : false
 
-        //cell.favoriteButton.isSelected = cell.isFavorite
         setupInitialFavoriteButtonAppearance()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // Seçilen hücrenin indeksini kullan
         let selectedItem = filteredMedia[indexPath.item]
-//        let currentMedia = filteredMedia[indexPath.item]
+
         setupInitialFavoriteButtonAppearance()
         
         print("Selected item: \(selectedItem)")
@@ -128,8 +121,7 @@ class HomepageViewController: UIViewController, UICollectionViewDataSource, UICo
         
     func searchBar( _ searchBar: UISearchBar, textDidChange searchText: String) {
         print("Search Bar Text Did Change - \(searchText)")
-//        stopAudioForAll()
-//        selectedIndexForPlay = -1
+        
         searchBarSearchText = searchText
         filteredMedia = searchText.isEmpty ? allMedia : allMedia.filter {
             $0.artistName.lowercased().contains(searchText.lowercased())
@@ -168,8 +160,6 @@ class HomepageViewController: UIViewController, UICollectionViewDataSource, UICo
         switch categoryTitle {
         case "audiobook":
             whenSelectCategory()
-//        case "podcast":
-//            whenSelectCategory()
         case "music":
             whenSelectCategory()
         default:
@@ -178,8 +168,6 @@ class HomepageViewController: UIViewController, UICollectionViewDataSource, UICo
     }
     
     func whenSelectCategory() {
-//        selectedIndexForPlay = -1
-//        stopAudioForAll()
         updateCellsPlayerButtonsAppearance()
         // Kategori değiştiğinde favori durumlarını güncelle
         setupInitialFavoriteButtonAppearance()
@@ -214,7 +202,6 @@ class HomepageViewController: UIViewController, UICollectionViewDataSource, UICo
                 // Favori durumlarını güncelle
                 setupInitialFavoriteButtonAppearance()
                 
-//                updateCellsPlayerButtonsAppearance()
                 DispatchQueue.main.async {
                     self.homepageView.collectionView.reloadData() // Koleksiyon görünümünü güncelle
                 }
@@ -222,39 +209,9 @@ class HomepageViewController: UIViewController, UICollectionViewDataSource, UICo
                 print("Error fetching \(self.selectedCategory) data: \(error.localizedDescription)")
             }
         }
-//        presentcustomModalViewController()
-//        bottomSheetView.contentStackView.isHidden = false
     }
     
 //MARK: PLAY AUDIO ----------------------
-    
-//    func audioEvent(for media: Media, at indexPath: IndexPath, in cell: iTunesCollectionViewCell) {
-//        if let player = audioPlayerService.audioPlayer, player.isPlaying {
-//            
-//            stopAudioForAll()
-//            //updateCellsPlayerButtonsAppearance()
-//        }
-//        
-//        audioPlayerService.playAudio(for: media, at: indexPath)
-////        audioPlayerService.playMedia(at: audioPlayerService.currentIndex)
-//        
-//        // Şimdiki indexPath referansına güncelle
-//        audioPlayerService.currentPlayingIndexPath = indexPath
-////        audioPlayerService.currentIndex =
-////        audioPlayerService.playlist =
-//        //        DispatchQueue.main.async {
-//        //            self.presentcustomModalViewController()
-//        BottomSheetManager.shared.showBottomSheetView()
-//        BottomSheetManager.shared.setupPanGesture()
-//        cell.playButton.isSelected = true
-//        BottomSheetManager.shared.setPlayButtonsActive()
-//        
-////        BottomSheetManager.shared.updateContent(url: media.artworkUrl60)
-//        
-////        miniPlayerView.update(with: media)
-////        fullScreenPlayerView.update(with: media)
-//        //        }
-//    }
     
     func audioEvent(for media: Media, at indexPath: IndexPath) {
         if let player = audioPlayerService.audioPlayer, player.isPlaying {
@@ -263,19 +220,18 @@ class HomepageViewController: UIViewController, UICollectionViewDataSource, UICo
         
         audioPlayerService.playAudio(for: media, at: indexPath)
         //Şimdiki indexPath referansına güncelle
-        audioPlayerService.currentPlayingIndexPath = indexPath
+//        audioPlayerService.currentPlayingIndexPath = indexPath
         
         BottomSheetManager.shared.showBottomSheetView()
         BottomSheetManager.shared.setupPanGesture()
-//        cell.playButton.isSelected = true
         BottomSheetManager.shared.setPlayButtonsActive()
     }
     
     func stopAudioForAll() {
-        //player.stop()
-        BottomSheetManager.shared.setPlayButtonsPassive()
+        //player stop
         audioPlayerService.stopAudio()
         
+        BottomSheetManager.shared.setPlayButtonsPassive()
         // Tüm koleksiyonu döngüye alarak hücreleri kontrol et
         for cell in homepageView.collectionView.visibleCells {
             guard let cell = cell as? iTunesCollectionViewCell else { return }
@@ -283,12 +239,12 @@ class HomepageViewController: UIViewController, UICollectionViewDataSource, UICo
         }
         
         // Önceki indexPath referansını temizle
-        audioPlayerService.currentPlayingIndexPath = nil
+//        audioPlayerService.currentPlayingIndexPath = nil
     }
     
     func updateCellsPlayerButtonsAppearance() {
         DispatchQueue.main.async {
-            guard let currentMedia = self.audioPlayerService.currentMedia else { return }
+            guard let currentMedia = self.audioPlayerService.currentPlayingMedia else { return }
             let currentMediaCollectionId = currentMedia.collectionId
             
             for cell in self.homepageView.collectionView.visibleCells {
@@ -307,12 +263,29 @@ class HomepageViewController: UIViewController, UICollectionViewDataSource, UICo
     func didUpdateProgress(_ progress: Float) {
         if !audioPlayerService.isAudioPlaying() {
             // Eğer şarkı ilk defa çalınıyorsa ilerleme çubuğunu sıfırla
-            bottomSheetView.fullScreenPlayerView.progressView.setProgress(0.0, animated: false)
+            bottomSheetView.fullScreenPlayerView.progressSlider.setValue(0.0, animated: false)
         } else {
             // Şarkı çalıyorsa ilerleme durumunu güncelle
-            bottomSheetView.fullScreenPlayerView.progressView.setProgress(progress, animated: true)
+            bottomSheetView.fullScreenPlayerView.progressSlider.setValue(progress, animated: true)
         }
         updateCellsPlayerButtonsAppearance()
+    }
+    
+    // Selector fonksiyonu
+    @objc func progressSliderValueChanged(_ sender: UISlider) {
+        
+        // Yeni ilerleme süresini hesapla
+        let newPosition = Double(sender.value) * audioPlayerService.totalTime
+        
+        // AVAudioPlayer'ın currentTime özelliğini ayarla
+        audioPlayerService.audioPlayer?.currentTime = newPosition
+    }
+
+    // Zamanı biçimlendirme fonksiyonu
+    func formatTime(_ time: TimeInterval) -> String {
+        let minutes = Int(time) / 60
+        let seconds = Int(time) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
     }
     
     func finishPlaying() {
@@ -324,49 +297,52 @@ class HomepageViewController: UIViewController, UICollectionViewDataSource, UICo
             cell.playButton.isSelected = false
         }
         // Önceki indexPath referansını temizle
-        audioPlayerService.currentPlayingIndexPath = nil
+//        audioPlayerService.currentPlayingIndexPath = nil
     }
     
-//    func audioPlayerDidFinishPlaying() {
-//        if let player = audioPlayerService.audioPlayer, player.isPlaying {
-//            // Çalma tamamlanmadı
-//            // Tüm koleksiyonu döngüye alarak hücreleri kontrol et
-//            for cell in homepageView.collectionView.visibleCells {
-//                guard let cell = cell as? iTunesCollectionViewCell else { return }
-//                cell.playButton.isSelected = true
-//            }
-//            BottomSheetManager.shared.setPlayButtonsActive()
-//        } else {
-//            // Çalma tamamlandı
-//            // Tüm koleksiyonu döngüye alarak hücreleri kontrol et
-//            for cell in homepageView.collectionView.visibleCells {
-//                guard let cell = cell as? iTunesCollectionViewCell else { return }
-//                cell.playButton.isSelected = false
-//            }
-//            BottomSheetManager.shared.setPlayButtonsPassive()
-//        }
-//    }
-    
-    @objc func didTapPlayButton(_ sender: UIButton) {
+    @objc func didTapPlayButtonForCells(_ sender: UIButton) {
         guard !sender.isSelected else {
-//            selectedIndexForPlay = -1
             stopAudioForAll()
             return
         }
-//            updateCellsPlayerButtonsAppearance()
         let rowIndex = sender.tag
-//        selectedIndexForPlay = rowIndex
         audioPlayerService.currentIndex = rowIndex
         let indexPath = IndexPath(row: rowIndex, section: 0)
+        
         guard let cell = homepageView.collectionView.cellForItem(at: indexPath) as? iTunesCollectionViewCell else { return }
+        
         let media = filteredMedia[indexPath.item]
-//        let media = audioPlayerService.playlist[indexPath.item]
+        //        let media = audioPlayerService.playlist[indexPath.item]
         BottomSheetManager.shared.setPlayButtonsActive()
         cell.playButton.isSelected = true
         
 //        audioEvent(for: media, at: indexPath, in: cell)
         audioEvent(for: media, at: indexPath)
     }
+    
+    @objc func didTapPlayButtonForMiniAndFullScreenPlayer( sender: UIButton) {
+        guard !sender.isSelected else {
+            stopAudioForAll()
+            return
+        }
+        let index = sender.tag
+        audioPlayerService.currentIndex = index
+        let indexPath = IndexPath(item: index, section: 0)
+        // currentPlayingMedia değişkeninden medya bilgisini al
+        guard let media = audioPlayerService.currentPlayingMedia else { return }
+        BottomSheetManager.shared.setPlayButtonsActive()
+        
+        audioEvent(for: media, at: indexPath)
+    }
+    
+    @objc func didTapPreviousButton() {
+        audioPlayerService.playPrevious()
+    }
+    
+    @objc func didTapNextButton() {
+        audioPlayerService.playNext()
+    }
+    
     
     
 //MARK: - Favorite Activity ---------------------
@@ -438,60 +414,7 @@ class HomepageViewController: UIViewController, UICollectionViewDataSource, UICo
             cell.favoriteButton.isSelected = true
         }
     }
-    
-    
-    //MARK: - Bottom Sheet Activity---------------
-    
-//    func presentcustomModalViewController() {
-//        let customModalViewController = CustomModalViewController()
-////        customModalViewController.modalPresentationStyle = .overCurrentContext
-//        customModalViewController.modalPresentationStyle = .custom
-//        // Keep animated value as false
-//        // Custom Modal presentation animation will be handled in view controller itself
-//        self.present(customModalViewController, animated: false)
-        
-        // container view oluşturulması ve view controller'ın eklenmesi
-//        let customModalViewController = CustomModalViewController()
-//        addChild(customModalViewController)
-//        homepageView.collectionView.addSubview(customModalViewController.view)
-//        customModalViewController.didMove(toParent: self)
-
-//    }
-    
-    
-//    func updateMiniPlayer() {
-////        guard let currentMedia = audioPlayerService.playlist[safe: audioPlayerService.currentIndex] else {
-//        guard let currentMedia = audioPlayerService.currentMedia else {
-//            // Eğer şu anda çalınan bir medya yoksa, mini player'ı temizle
-////            miniPlayerView.miniItemImageView.image = nil
-////            miniPlayerView.miniItemTitleLabel.text = nil
-////            miniPlayerView.miniPlayButton.isSelected = false
-//            return
-//        }
-//        miniPlayerView.update(with: currentMedia)
-//    }
-//    
-//    func updateFullScreenPlayer() {
-////        guard let currentMedia = audioPlayerService.playlist[safe: audioPlayerService.currentIndex] else {
-//        guard let currentMedia = audioPlayerService.currentMedia else {
-//            // Eğer şu anda çalınan bir medya yoksa, full screen player'ı temizle
-////            fullScreenPlayerView.fullScreenItemImageView.image = nil
-////            fullScreenPlayerView.fullScreenItemTitleLabel.text = nil
-////            fullScreenPlayerView.playButton.isSelected = false
-//            return
-//        }
-//        fullScreenPlayerView.update(with: currentMedia)
-//    }
-    
-    
-    @objc func didTapPreviousButton() {
-        audioPlayerService.playPrevious()
-    }
-    
-    @objc func didTapNextButton() {
-        audioPlayerService.playNext()
-    }
-    
+   
 }
 
 extension Collection {

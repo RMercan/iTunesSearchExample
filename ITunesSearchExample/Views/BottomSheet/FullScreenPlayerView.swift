@@ -13,7 +13,6 @@ final class FullScreenPlayerView: UIView {
 
     lazy var fullScreenItemImageView: UIImageView = {
         let imageView = UIImageView()
-//        imageView.backgroundColor = .orange
         imageView.contentMode = .scaleAspectFit // Görüntüyü uygun şekilde ölçeklendir
         imageView.clipsToBounds = true // Görüntünün sınırların dışına çıkmasını önle
         return imageView
@@ -21,7 +20,6 @@ final class FullScreenPlayerView: UIView {
     
     lazy var fullScreenItemTitleLabel: UILabel = {
         let label = UILabel()
-//        label.text = "Title"
         label.font = .systemFont(ofSize: 20, weight: .semibold)
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -30,7 +28,6 @@ final class FullScreenPlayerView: UIView {
     
     lazy var itemSubtitleLabel: UILabel = {
         let label = UILabel()
-//        label.text = "Subtitle"
         label.font = .systemFont(ofSize: 18, weight: .regular)
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -59,11 +56,10 @@ final class FullScreenPlayerView: UIView {
         return button
     }()
     
-    lazy var progressView: UIProgressView = {
-        let progressView = UIProgressView()
-        progressView.progressTintColor = .gray
-        progressView.trackTintColor = .lightGray
-        return progressView
+    lazy var progressSlider: UISlider = {
+        let slider = UISlider()
+        slider.value = 0.0
+        return slider
     }()
         
     override init(frame: CGRect) {
@@ -84,7 +80,7 @@ final class FullScreenPlayerView: UIView {
         addSubview(fullScreenPlayButton)
         addSubview(previousButton)
         addSubview(nextButton)
-        addSubview(progressView)
+        addSubview(progressSlider)
     }
     
     func setupLayouts() {
@@ -107,26 +103,26 @@ final class FullScreenPlayerView: UIView {
             make.height.equalTo(20)
         }
         
-        progressView.snp.makeConstraints { make in
+        progressSlider.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.top.equalTo(itemSubtitleLabel.snp.bottom).offset(20)
             make.height.equalTo(10)
         }
         
         fullScreenPlayButton.snp.makeConstraints { make in
-            make.top.equalTo(progressView.snp.bottom).offset(20)
+            make.top.equalTo(progressSlider.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
             make.height.width.equalTo(60)
         }
         
         previousButton.snp.makeConstraints { make in
-            make.top.equalTo(progressView.snp.bottom).offset(20)
+            make.top.equalTo(progressSlider.snp.bottom).offset(20)
             make.trailing.equalTo(fullScreenPlayButton.snp.leading).inset(-10)
             make.height.width.equalTo(60)
         }
         
         nextButton.snp.makeConstraints { make in
-            make.top.equalTo(progressView.snp.bottom).offset(20)
+            make.top.equalTo(progressSlider.snp.bottom).offset(20)
             make.leading.equalTo(fullScreenPlayButton.snp.trailing).offset(10)
             make.height.width.equalTo(60)
         }
