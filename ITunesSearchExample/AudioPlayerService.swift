@@ -87,8 +87,8 @@ final class AudioPlayerService: NSObject, AVAudioPlayerDelegate {
         
         if let existingPlayer = audioPlayer, existingPlayer.isPlaying {
             existingPlayer.stop()
-            currentPlayingMedia = nil
-            currentPlayingIndexPath = nil
+//            currentPlayingMedia = nil
+//            currentPlayingIndexPath = nil
         }
         
         delegate?.finishPlaying()
