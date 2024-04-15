@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class BottomSheetView: UIView {
+final class BottomSheetView: UIView {
     
     lazy var fullScreenPlayerView: FullScreenPlayerView = {
         let view = FullScreenPlayerView()
@@ -23,17 +23,9 @@ class BottomSheetView: UIView {
         view.layer.cornerRadius = 10
         return view
     }()
-    
-    let defaultHeight: CGFloat = 75
-    
-    let dismissibleHeight: CGFloat = 20
-    
+            
     // Dynamic container constraint
-    var containerViewHeightConstraint: NSLayoutConstraint?
     var containerViewBottomConstraint: NSLayoutConstraint?
-    
-    let audioPlayerService = AudioPlayerService()
-    let bottomSheetManager = BottomSheetManager()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

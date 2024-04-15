@@ -11,21 +11,23 @@ import AVFoundation
 protocol AudioPlayerServiceDelegate: AnyObject {
     func didUpdateProgress(_ progress: Float)
     func finishPlaying()
+    func didPlayedMedia(media: Media)
 }
 
 final class AudioPlayerService: NSObject, AVAudioPlayerDelegate {
     
     weak var delegate: AudioPlayerServiceDelegate?
 
+    static let shared = AudioPlayerService()
+    
     var audioPlayer: AVAudioPlayer?
     var timer: Timer?
-    
-    //FIXME: check this: is there any caller
-    var currentPlayingIndexPath: IndexPath?
     var currentPlayingMedia: Media?
+    var selectedScopeIndexForScopeBar: Int = -1
     var currentIndex: Int = -1
-    var playlist: [Media] = []
     var totalTime: TimeInterval = 0.0
+    var formattedCurrentTime: String = "00.00"
+    var formattedTotalTime: String = "00.00"
     
     func playAudio(for media: Media, at indexPath: IndexPath) {
         // Önceki timerı durdur
@@ -43,9 +45,8 @@ final class AudioPlayerService: NSObject, AVAudioPlayerDelegate {
             DispatchQueue.main.async {
                 do {
                     self.currentPlayingMedia = media
-                    self.playMedia(at: indexPath.row) 
-                    self.currentPlayingIndexPath = indexPath
-
+                    self.playMedia(at: indexPath.row)
+                    
                     self.audioPlayer = try AVAudioPlayer(data: data)
                     self.audioPlayer?.delegate = self
                     self.audioPlayer?.play()
@@ -55,8 +56,7 @@ final class AudioPlayerService: NSObject, AVAudioPlayerDelegate {
                     
                     // Medyanın toplam süresi
                     self.totalTime =  self.audioPlayer?.duration ?? 1
-                    
-                    
+                    print("Total Time: \(self.totalTime)")
                     BottomSheetManager.shared.updateContent(media: media)
                 } catch {
                     print("Error playing audio: \(error.localizedDescription)")
@@ -64,6 +64,8 @@ final class AudioPlayerService: NSObject, AVAudioPlayerDelegate {
             }
         }
         task.resume()
+        
+        self.delegate?.didPlayedMedia(media: media)
     }
     
     func startUpdatingProgress() {
@@ -80,15 +82,12 @@ final class AudioPlayerService: NSObject, AVAudioPlayerDelegate {
         }
     }
     
-    
     func stopAudio() {
         // timerı durdur
         timer?.invalidate()
         
         if let existingPlayer = audioPlayer, existingPlayer.isPlaying {
             existingPlayer.stop()
-//            currentPlayingMedia = nil
-//            currentPlayingIndexPath = nil
         }
         
         delegate?.finishPlaying()
@@ -104,46 +103,43 @@ final class AudioPlayerService: NSObject, AVAudioPlayerDelegate {
         return audioPlayer?.isPlaying ?? false
     }
     
-    func playPauseToggle(for media: Media, at indexPath: IndexPath) {
-        if isAudioPlaying() {
-            stopAudio()
-        } else {
-            playAudio(for: media, at: indexPath)
-        }
-    }
-    
     func playMedia(at index: Int) {
-        guard index >= 0 && index < playlist.count else { return }
+        guard index >= 0 && index < MediasService.shared.playlist.count else { return }
         currentIndex = index
-        let media = playlist[currentIndex]
     }
     
     func playNext() {
-        guard !playlist.isEmpty else {
+        guard !MediasService.shared.playlist.isEmpty else {
             print("Playlist is empty!")
             return // Playlist boşsa işlemi durdur
         }
         
-        let nextIndex = (currentIndex + 1) % playlist.count
+        let nextIndex = (currentIndex + 1) % MediasService.shared.playlist.count
         currentIndex = nextIndex
         
-        let media = playlist[nextIndex]
+        let media = MediasService.shared.playlist[nextIndex]
         playAudio(for: media, at: IndexPath(item: nextIndex, section: 0))
     }
 
     func playPrevious() {
-        guard !playlist.isEmpty else {
+        guard !MediasService.shared.playlist.isEmpty else {
             print("Playlist is empty!")
             return // Playlist boşsa işlemi durdur
         }
         
-        let previousIndex = (currentIndex - 1 + playlist.count) % playlist.count
+        let previousIndex = (currentIndex - 1 + MediasService.shared.playlist.count) % MediasService.shared.playlist.count
         currentIndex = previousIndex
+        let media = MediasService.shared.playlist[previousIndex]
         
-        let media = playlist[previousIndex]
         playAudio(for: media, at: IndexPath(item: previousIndex, section: 0))
     }
-
+    
+    func formattedTime(time: TimeInterval) -> String {
+        let minutes = Int(time) / 60
+        let seconds = Int(time) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
+    
 }
 
 

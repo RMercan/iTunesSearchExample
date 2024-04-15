@@ -54,7 +54,6 @@ final class HomepageView: UIView {
         
         addSubview(navigationBarItems)
         addSubview(beginningLabel)
-        
     }
     
     func setupLayouts(){
@@ -72,7 +71,6 @@ final class HomepageView: UIView {
             make.top.equalTo(navigationBarItems.snp.bottom).offset(200)
             make.leading.trailing.equalToSuperview().inset(20)
         }
-        
     }
     
 }

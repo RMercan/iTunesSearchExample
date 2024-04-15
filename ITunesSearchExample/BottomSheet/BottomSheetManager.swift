@@ -21,15 +21,13 @@ final class BottomSheetManager: NSObject {
     
     lazy var bottomSheetView: BottomSheetView = {
         let view = BottomSheetView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .systemGray5
         view.isHidden = true
         return view
     }()
     
     let miniPlayerView = MiniPlayerView()
     let fullScreenPlayerView = FullScreenPlayerView()
-    let audioPlayerService = AudioPlayerService()
-    let homepageView = HomepageView()
     
     var playerViewType: PlayerViewType = .mini
     
@@ -53,6 +51,56 @@ final class BottomSheetManager: NSObject {
         bottomSheetView.isHidden = false
     }
     
+    func updateContent(media: Media) {
+        let url60 = URL(string: media.artworkUrl60)
+        let url100 = URL(string: media.artworkUrl100)
+        bottomSheetView.miniPlayerView.miniItemImageView.kf.setImage(with: url60)
+        bottomSheetView.miniPlayerView.miniItemTitleLabel.text = media.artistName
+        bottomSheetView.fullScreenPlayerView.fullScreenItemImageView.kf.setImage(with: url100)
+        bottomSheetView.fullScreenPlayerView.fullScreenItemTitleLabel.text = media.artistName
+        bottomSheetView.fullScreenPlayerView.itemSubtitleLabel.text = media.collectionName
+        
+    }
+    
+    func updateTimeLabels() {
+        guard let player = AudioPlayerService.shared.audioPlayer else { return }
+        let currentTime = player.currentTime
+        AudioPlayerService.shared.formattedCurrentTime = AudioPlayerService.shared.formattedTime(time: currentTime)
+        print("Current time: \(AudioPlayerService.shared.formattedCurrentTime)")
+        AudioPlayerService.shared.formattedTotalTime = AudioPlayerService.shared.formattedTime(time: AudioPlayerService.shared.totalTime)
+        print("Total time: \(AudioPlayerService.shared.formattedTotalTime)")
+        
+        bottomSheetView.miniPlayerView.timeLabel.text = "\(AudioPlayerService.shared.formattedCurrentTime)/\(AudioPlayerService.shared.formattedTotalTime)"
+        bottomSheetView.fullScreenPlayerView.currentTimeLabel.text = "\(AudioPlayerService.shared.formattedCurrentTime)"
+        bottomSheetView.fullScreenPlayerView.totalTimeLabel.text = "\(AudioPlayerService.shared.formattedTotalTime)"
+//        DispatchQueue.main.async {
+//            BottomSheetManager.shared.miniPlayerView.timeLabel.text = "\(self.formattedCurrentTime)/\(self.formattedTotalTime)"
+//            BottomSheetManager.shared.fullScreenPlayerView.currentTimeLabel.text = "\(self.formattedCurrentTime)"
+//            BottomSheetManager.shared.fullScreenPlayerView.totalTimeLabel.text = "\(self.formattedTotalTime)"
+//        }
+    }
+
+    
+    func setPlayButtonsActive() {
+        bottomSheetView.miniPlayerView.miniPlayButton.isSelected = true
+        bottomSheetView.fullScreenPlayerView.fullScreenPlayButton.isSelected = true
+    }
+    
+    func setPlayButtonsPassive() {
+        bottomSheetView.miniPlayerView.miniPlayButton.isSelected = false
+        bottomSheetView.fullScreenPlayerView.fullScreenPlayButton.isSelected = false
+    }
+    
+    func setAlpha(alpha: CGFloat) {
+        bottomSheetView.miniPlayerView.alpha = alpha
+    }
+    
+}
+
+
+//MARK: Pan Gesture --------
+extension BottomSheetManager {
+    
     func setupPanGesture() {
         // pan gesture recognizer'ı view controller'ın görünümüne ekle (tüm ekran)
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.handlePanGesture(gesture:)))
@@ -70,8 +118,7 @@ final class BottomSheetManager: NSObject {
         let translatedPoint = gesture.location(in: self.bottomSheetView)
         
         
-        // Sadece bottom sheet view'ın boyutları içindeki hareketleri işle
-        
+        // Sadece bottom sheet view'ın boyutları içindeki hareketleri işle:
         // Yukarı çekmek eksi değer olacak veya tam tersi
         print("Pan gesture y offset: \(translation.y)")
         
@@ -130,40 +177,6 @@ final class BottomSheetManager: NSObject {
             break
         }
         
-    }
-    
-    func updateContent(media: Media) {
-        let url60 = URL(string: media.artworkUrl60)
-        let url100 = URL(string: media.artworkUrl100)
-        bottomSheetView.miniPlayerView.miniItemImageView.kf.setImage(with: url60)
-        bottomSheetView.miniPlayerView.miniItemTitleLabel.text = media.artistName
-        bottomSheetView.fullScreenPlayerView.fullScreenItemImageView.kf.setImage(with: url100)
-        bottomSheetView.fullScreenPlayerView.fullScreenItemTitleLabel.text = media.artistName
-        bottomSheetView.fullScreenPlayerView.itemSubtitleLabel.text = media.collectionName
-    }
-    
-    func setPlayButtonsActive() {
-        bottomSheetView.miniPlayerView.miniPlayButton.isSelected = true
-        bottomSheetView.fullScreenPlayerView.fullScreenPlayButton.isSelected = true
-        // Tüm koleksiyonu döngüye alarak hücreleri kontrol et
-        for cell in homepageView.collectionView.visibleCells {
-            guard let cell = cell as? iTunesCollectionViewCell else { return }
-            cell.playButton.isSelected = true
-        }
-    }
-    
-    func setPlayButtonsPassive() {
-        bottomSheetView.miniPlayerView.miniPlayButton.isSelected = false
-        bottomSheetView.fullScreenPlayerView.fullScreenPlayButton.isSelected = false
-        // Tüm koleksiyonu döngüye alarak hücreleri kontrol et
-        for cell in homepageView.collectionView.visibleCells {
-            guard let cell = cell as? iTunesCollectionViewCell else { return }
-            cell.playButton.isSelected = false
-        }
-    }
-    
-    func setAlpha(alpha: CGFloat) {
-        bottomSheetView.miniPlayerView.alpha = alpha
     }
     
 }

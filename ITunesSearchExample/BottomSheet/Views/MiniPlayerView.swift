@@ -33,7 +33,16 @@ final class MiniPlayerView: UIView {
         button.setImage(UIImage(named: "pauseIcon"), for: .selected)
         return button
     }()
-        
+    
+    lazy var timeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "00.00/00.00"
+        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.textAlignment = .right
+        label.numberOfLines = 1
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .systemBackground
@@ -49,22 +58,28 @@ final class MiniPlayerView: UIView {
         addSubview(miniItemImageView)
         addSubview(miniItemTitleLabel)
         addSubview(miniPlayButton)
+        addSubview(timeLabel)
     }
     
     func setupLayouts() {
         miniItemImageView.snp.makeConstraints { make in
-            make.leading.top.bottom.equalToSuperview().inset(5)
+            make.leading.top.bottom.equalToSuperview().inset(10)
             make.width.equalTo(60)
         }
         
         miniItemTitleLabel.snp.makeConstraints { make in
             make.leading.equalTo(miniItemImageView.snp.trailing).offset(10)
-            make.trailing.equalTo(miniPlayButton.snp.leading).offset(-7)
             make.top.bottom.equalToSuperview().inset(5)
         }
         
+        timeLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(miniItemTitleLabel.snp.trailing).offset(7)
+            make.trailing.equalTo(miniPlayButton.snp.leading).offset(-10)
+        }
+        
         miniPlayButton.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(5)
+            make.trailing.equalToSuperview().inset(10)
             make.centerY.equalToSuperview()
             make.height.width.equalTo(40)
         }

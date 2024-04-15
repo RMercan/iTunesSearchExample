@@ -1,5 +1,5 @@
 //
-//  UserDefaultsKeys.swift
+//  FavoriteMedia.swift
 //  ITunesSearchExample
 //
 //  Created by RabiaMercan on 11.03.2024.

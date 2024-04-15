@@ -59,7 +59,24 @@ final class FullScreenPlayerView: UIView {
     lazy var progressSlider: UISlider = {
         let slider = UISlider()
         slider.value = 0.0
+        slider.minimumTrackTintColor = .darkGray
         return slider
+    }()
+    
+    lazy var currentTimeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "00.00"
+        label.font = .systemFont(ofSize: 13, weight: .regular)
+        label.textAlignment = .left
+        return label
+    }()
+    
+    lazy var totalTimeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "00.00"
+        label.font = .systemFont(ofSize: 13, weight: .regular)
+        label.textAlignment = .right
+        return label
     }()
         
     override init(frame: CGRect) {
@@ -81,6 +98,8 @@ final class FullScreenPlayerView: UIView {
         addSubview(previousButton)
         addSubview(nextButton)
         addSubview(progressSlider)
+        addSubview(currentTimeLabel)
+        addSubview(totalTimeLabel)
     }
     
     func setupLayouts() {
@@ -109,23 +128,36 @@ final class FullScreenPlayerView: UIView {
             make.height.equalTo(10)
         }
         
+        currentTimeLabel.snp.makeConstraints { make in
+            make.top.equalTo(progressSlider.snp.bottom).offset(10)
+            make.leading.equalToSuperview().inset(20)
+            make.height.equalTo(20)
+        }
+        
+        totalTimeLabel.snp.makeConstraints { make in
+            make.top.equalTo(progressSlider.snp.bottom).offset(10)
+            make.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(20)
+        }
+        
         fullScreenPlayButton.snp.makeConstraints { make in
-            make.top.equalTo(progressSlider.snp.bottom).offset(20)
+            make.top.equalTo(totalTimeLabel.snp.bottom).offset(35)
             make.centerX.equalToSuperview()
             make.height.width.equalTo(60)
         }
         
         previousButton.snp.makeConstraints { make in
-            make.top.equalTo(progressSlider.snp.bottom).offset(20)
-            make.trailing.equalTo(fullScreenPlayButton.snp.leading).inset(-10)
+            make.top.equalTo(totalTimeLabel.snp.bottom).offset(35)
+            make.trailing.equalTo(fullScreenPlayButton.snp.leading).inset(-15)
             make.height.width.equalTo(60)
         }
         
         nextButton.snp.makeConstraints { make in
-            make.top.equalTo(progressSlider.snp.bottom).offset(20)
-            make.leading.equalTo(fullScreenPlayButton.snp.trailing).offset(10)
+            make.top.equalTo(totalTimeLabel.snp.bottom).offset(35)
+            make.leading.equalTo(fullScreenPlayButton.snp.trailing).offset(15)
             make.height.width.equalTo(60)
         }
+        
     }
     
 }

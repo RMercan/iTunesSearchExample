@@ -9,7 +9,6 @@ import UIKit
 
 struct Media: Codable {
     // Medya modeli alanlarını burada tanımla
-    let trackId: Int
     let artistName: String
     let collectionName: String
     let artworkUrl60: String

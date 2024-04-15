@@ -1,12 +1,20 @@
 //
-//  MediaService.swift
+//  MediasService.swift
 //  ITunesSearchExample
 //
 //  Created by RabiaMercan on 4.03.2024.
 
 import UIKit
 
-class MediasService {
+
+final class MediasService {
+    
+    static let shared = MediasService()
+    
+    var filteredMedia: [Media] = []
+    var allMedia: [Media] = []
+    var playlist: [Media] = []
+
     
     enum MediasServiceError: Error {
         case invalidJSON
@@ -28,7 +36,7 @@ class MediasService {
         let newURL = baseURL.appending(urlParameters)
         print("API URL:", newURL.absoluteString)
         
-        URLSession.shared.dataTask(with: newURL) { data, _, error in
+        URLSession.shared.dataTask(with: newURL) { [weak self] data, _, error  in
             if let error = error {
                 print("Error:", error.localizedDescription)
                 completion(.failure(error))
@@ -44,11 +52,10 @@ class MediasService {
             // API'dan gelen verileri işle
             do {
                 let decoder = JSONDecoder()
-//              print(data.base64EncodedString())
+                //print(data.base64EncodedString())
                 
                 let response = try decoder.decode(MediaServiceBaseResponse.self, from: data)
                 print("resultCount: ", response.resultCount)
-                //print("Response: " , response)
                 
                 let mediaArray = response.results
                 completion(.success(mediaArray))

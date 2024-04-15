@@ -1,5 +1,5 @@
 //
-//  SearchView.swift
+//  NavigationBarItems.swift
 //  ITunesSearchExample
 //
 //  Created by RabiaMercan on 4.03.2024.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class NavigationBarItems: UIView, UISearchBarDelegate {
+final class NavigationBarItems: UIView, UISearchBarDelegate {
 
     lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -62,7 +62,6 @@ class NavigationBarItems: UIView, UISearchBarDelegate {
             make.leading.trailing.equalToSuperview().inset(10)
             make.bottom.equalToSuperview()
         }
-        
     }
     
 }

@@ -21,6 +21,7 @@
 		B63E2E2B2B9613A2001F247B /* MediaServiceBaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E2E2A2B9613A2001F247B /* MediaServiceBaseResponse.swift */; };
 		B6AC8E3D2B9EF8960051F07D /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AC8E3C2B9EF8960051F07D /* FavoritesManager.swift */; };
 		B6AC8E412B9EFB3A0051F07D /* FavoriteMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AC8E402B9EFB3A0051F07D /* FavoriteMedia.swift */; };
+		B6E70A592BBACFA300D68446 /* FavoritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E70A582BBACFA300D68446 /* FavoritesService.swift */; };
 		B6F016B22BB4041B00C1203F /* BottomSheetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F016B12BB4041B00C1203F /* BottomSheetManager.swift */; };
 		B6F016B42BB416CE00C1203F /* AudioPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F016B32BB416CD00C1203F /* AudioPlayerManager.swift */; };
 		B6F0373A2BA0439F00799639 /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F037392BA0439F00799639 /* AudioPlayerService.swift */; };
@@ -49,6 +50,7 @@
 		B63E2E2A2B9613A2001F247B /* MediaServiceBaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaServiceBaseResponse.swift; sourceTree = "<group>"; };
 		B6AC8E3C2B9EF8960051F07D /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
 		B6AC8E402B9EFB3A0051F07D /* FavoriteMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMedia.swift; sourceTree = "<group>"; };
+		B6E70A582BBACFA300D68446 /* FavoritesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesService.swift; sourceTree = "<group>"; };
 		B6F016B12BB4041B00C1203F /* BottomSheetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetManager.swift; sourceTree = "<group>"; };
 		B6F016B32BB416CD00C1203F /* AudioPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerManager.swift; sourceTree = "<group>"; };
 		B6F037392BA0439F00799639 /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
@@ -92,22 +94,67 @@
 			isa = PBXGroup;
 			children = (
 				B63E2E042B9209FD001F247B /* AppDelegate.swift */,
+				B6E70A5A2BBD6B5C00D68446 /* Home */,
+				B6F0373E2BA466FB00799639 /* BottomSheet */,
+				B69915B22BBFE78300AD9831 /* Media */,
+				B69915B32BBFE86300AD9831 /* AudioPlayer */,
+				B69915B42BBFE89500AD9831 /* Favorites */,
+				B6F016B72BB6FA5F00C1203F /* Extensions */,
 				B63E2E0D2B9209FE001F247B /* Assets.xcassets */,
 				B63E2E0F2B9209FE001F247B /* LaunchScreen.storyboard */,
 				B63E2E122B9209FE001F247B /* Info.plist */,
-				B63E2E1C2B9515AE001F247B /* HomePageViewController.swift */,
+			);
+			path = ITunesSearchExample;
+			sourceTree = "<group>";
+		};
+		B69915B22BBFE78300AD9831 /* Media */ = {
+			isa = PBXGroup;
+			children = (
 				B63E2E202B95B783001F247B /* Media.swift */,
 				B63E2E222B95B7B9001F247B /* MediasService.swift */,
 				B63E2E2A2B9613A2001F247B /* MediaServiceBaseResponse.swift */,
+			);
+			path = Media;
+			sourceTree = "<group>";
+		};
+		B69915B32BBFE86300AD9831 /* AudioPlayer */ = {
+			isa = PBXGroup;
+			children = (
 				B6F037392BA0439F00799639 /* AudioPlayerService.swift */,
 				B6F016B32BB416CD00C1203F /* AudioPlayerManager.swift */,
-				B6AC8E3C2B9EF8960051F07D /* FavoritesManager.swift */,
-				B6AC8E402B9EFB3A0051F07D /* FavoriteMedia.swift */,
-				B6F016B12BB4041B00C1203F /* BottomSheetManager.swift */,
-				B6F0373D2BA466E600799639 /* Views */,
-				B6F016B72BB6FA5F00C1203F /* Extensions */,
 			);
-			path = ITunesSearchExample;
+			path = AudioPlayer;
+			sourceTree = "<group>";
+		};
+		B69915B42BBFE89500AD9831 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				B6AC8E402B9EFB3A0051F07D /* FavoriteMedia.swift */,
+				B6AC8E3C2B9EF8960051F07D /* FavoritesManager.swift */,
+				B6E70A582BBACFA300D68446 /* FavoritesService.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		B69915B52BBFE92300AD9831 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B6F0373F2BA4678400799639 /* BottomSheetView.swift */,
+				B6F0373B2BA44AF600799639 /* MiniPlayerView.swift */,
+				B6F037432BA48C7F00799639 /* FullScreenPlayerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B6E70A5A2BBD6B5C00D68446 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B63E2E1E2B95AA29001F247B /* iTunesCollectionViewCell.swift */,
+				B63E2E262B95DEC1001F247B /* NavigationBarItems.swift */,
+				B63E2E1A2B95157B001F247B /* HomePageView.swift */,
+				B63E2E1C2B9515AE001F247B /* HomePageViewController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		B6F016B72BB6FA5F00C1203F /* Extensions */ = {
@@ -119,23 +166,11 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		B6F0373D2BA466E600799639 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				B63E2E1A2B95157B001F247B /* HomePageView.swift */,
-				B63E2E1E2B95AA29001F247B /* iTunesCollectionViewCell.swift */,
-				B63E2E262B95DEC1001F247B /* NavigationBarItems.swift */,
-				B6F0373E2BA466FB00799639 /* BottomSheet */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		B6F0373E2BA466FB00799639 /* BottomSheet */ = {
 			isa = PBXGroup;
 			children = (
-				B6F0373F2BA4678400799639 /* BottomSheetView.swift */,
-				B6F0373B2BA44AF600799639 /* MiniPlayerView.swift */,
-				B6F037432BA48C7F00799639 /* FullScreenPlayerView.swift */,
+				B69915B52BBFE92300AD9831 /* Views */,
+				B6F016B12BB4041B00C1203F /* BottomSheetManager.swift */,
 			);
 			path = BottomSheet;
 			sourceTree = "<group>";
@@ -285,6 +320,7 @@
 				B63E2E052B9209FD001F247B /* AppDelegate.swift in Sources */,
 				B6F037402BA4678400799639 /* BottomSheetView.swift in Sources */,
 				B63E2E292B95EA92001F247B /* UIViewExtensions.swift in Sources */,
+				B6E70A592BBACFA300D68446 /* FavoritesService.swift in Sources */,
 				B6F016B22BB4041B00C1203F /* BottomSheetManager.swift in Sources */,
 				B6AC8E3D2B9EF8960051F07D /* FavoritesManager.swift in Sources */,
 				B6F016B42BB416CE00C1203F /* AudioPlayerManager.swift in Sources */,

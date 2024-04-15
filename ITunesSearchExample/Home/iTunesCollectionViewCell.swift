@@ -10,7 +10,7 @@ import SnapKit
 
 final class iTunesCollectionViewCell: UICollectionViewCell {
     
-    var isFavorite: Bool = false
+    private var isFavorite: Bool = false
     
     var media: Media?
     
@@ -30,7 +30,7 @@ final class iTunesCollectionViewCell: UICollectionViewCell {
     
     lazy var playButton: UIButton = {
         let button = UIButton()
-        button.layer.cornerRadius = 20
+        button.layer.cornerRadius = 15
         button.setImage(UIImage(named: "playIcon"), for: .normal)
         button.setImage(UIImage(named: "pauseIcon"), for: .selected)
         return button
@@ -38,7 +38,7 @@ final class iTunesCollectionViewCell: UICollectionViewCell {
     
     lazy var favoriteButton: UIButton = {
         let button = UIButton()
-        button.layer.cornerRadius = 20
+        button.layer.cornerRadius = 15
         button.setImage(UIImage(named: "favStarIconLight"), for: .normal)
         button.setImage(UIImage(named: "favStarIconDark"), for: .selected)
         return button
@@ -82,13 +82,13 @@ final class iTunesCollectionViewCell: UICollectionViewCell {
         playButton.snp.makeConstraints { make in
             make.trailing.equalTo(favoriteButton.snp.leading).offset(-5) 
             make.centerY.equalToSuperview()
-            make.height.width.equalTo(40)
+            make.height.width.equalTo(30)
         }
         
         favoriteButton.snp.makeConstraints{ make in
             make.trailing.equalToSuperview().inset(5)
             make.centerY.equalToSuperview()
-            make.height.width.equalTo(40)
+            make.height.width.equalTo(30)
         }
     }
 
